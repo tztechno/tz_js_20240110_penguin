@@ -54,8 +54,8 @@ function parseCSV(csv) {
 // グラフを描画する関数
 function drawChart(penguinData) {
     // データを整形
-    const culmen_length_mm = penguinData.map(entry => parseFloat(entry.culmen_length_mm));
-    const culmen_depth_mm = penguinData.map(entry => parseFloat(entry.culmen_depth_mm));
+    const culmen_length_mm = penguinData.map(entry => entry.culmen_length_mm);
+    const culmen_depth_mm = penguinData.map(entry => entry.culmen_depth_mm);
 
     // グラフを描画するためのコンテキスト
     const ctx = document.getElementById('penguinChart').getContext('2d');
