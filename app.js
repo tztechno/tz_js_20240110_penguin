@@ -1,6 +1,6 @@
 // app.js
 
-const csvFilePath = 'penguines.csv';
+const csvFilePath = './penguins.csv';
 
 
 // CSVデータを取得してグラフを描画
@@ -12,8 +12,8 @@ fetch(csvFilePath)
         return response.text();
     })
     .then(csvData => {
-        const penguineData = parseCSV(csvData);
-        drawChart(penguineData);
+        const penguinData = parseCSV(csvData);
+        drawChart(penguinData);
     })
     .catch(error => console.error('Error:', error));
 
@@ -48,13 +48,13 @@ function parseCSV(csv) {
 
 
 // グラフを描画する関数
-function drawChart(penguineData) {
+function drawChart(penguinData) {
     // データを整形
-    const culmen_length_mm = penguineData.map(entry => parseFloat(entry.culmen_length_mm));
-    const culmen_depth_mm = penguineData.map(entry => parseFloat(entry.culmen_depth_mm));
+    const culmen_length_mm = penguinData.map(entry => parseFloat(entry.culmen_length_mm));
+    const culmen_depth_mm = penguinData.map(entry => parseFloat(entry.culmen_depth_mm));
 
     // グラフを描画するためのコンテキスト
-    const ctx = document.getElementById('penguineChart').getContext('2d');
+    const ctx = document.getElementById('penguinChart').getContext('2d');
 
     // チャートの作成
     const myChart = new Chart(ctx, {
@@ -62,7 +62,7 @@ function drawChart(penguineData) {
         data: {
             datasets: [{
                 label: 'culmen_length_depth',
-                data: penguineData.map(entry => ({ x: parseFloat(entry.culmen_length_mm), y: parseFloat(entry.culmen_depth_mm) })),
+                data: penguinData.map(entry => ({ x: parseFloat(entry.culmen_length_mm), y: parseFloat(entry.culmen_depth_mm) })),
                 borderColor: 'rgba(75, 192, 192, 1)',
                 backgroundColor: 'rgba(75, 192, 192, 0.5)',
             }]
