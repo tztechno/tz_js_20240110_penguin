@@ -13,7 +13,6 @@ fetch(csvFilePath)
     })
     .then(csvData => {
         const penguinData = parseCSV(csvData);
-        console.log(penguinData);
         drawChart(penguinData);
     })
     .catch(error => console.error('Error:', error));
@@ -28,7 +27,6 @@ function parseCSV(csv) {
     for (let i = 1; i < lines.length; i++) {
         const values = lines[i].split(',');
         const entry = {};
-
         let validEntry = true; // Flag to check if the entry is valid
 
         for (let j = 0; j < headers.length; j++) {
@@ -41,16 +39,13 @@ function parseCSV(csv) {
                 validEntry = false;
                 break;
             }
-
             entry[key] = value;
         }
-
         // If the entry is valid, add it to the data array
         if (validEntry) {
             data.push(entry);
         }
     }
-
     return data;
 }
 
