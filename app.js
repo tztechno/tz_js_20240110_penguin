@@ -34,7 +34,7 @@ function parseCSV(csv) {
         for (let j = 0; j < headers.length; j++) {
             const key = headers[j].trim();
             let value = values[j].trim();
-            value = parseFloat(value.replace(/[^\d.]/g, ''));
+            value = parseFloat(value);
 
             if (isNaN(value)) {
                 // If the value is NaN, mark the entry as invalid and break the loop
