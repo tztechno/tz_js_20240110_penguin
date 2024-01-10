@@ -1,6 +1,6 @@
 // app.js
 
-const csvFilePath = 'ishikawa_202401.csv';
+const csvFilePath = 'penguines.csv';
 
 
 // CSVデータを取得してグラフを描画
@@ -12,8 +12,8 @@ fetch(csvFilePath)
         return response.text();
     })
     .then(csvData => {
-        const earthquakeData = parseCSV(csvData);
-        drawChart(earthquakeData);
+        const penguineData = parseCSV(csvData);
+        drawChart(penguineData);
     })
     .catch(error => console.error('Error:', error));
 
@@ -47,32 +47,22 @@ function parseCSV(csv) {
 
 
 
-
-//　検討中
-//　検討中
-//　検討中
-//　検討中
-//　検討中
-//　検討中
-//　検討中
-//　検討中
-
 // グラフを描画する関数
-function drawChart(earthquakeData) {
+function drawChart(penguineData) {
     // データを整形
-    const latitudes = earthquakeData.map(entry => parseFloat(entry.latitude));
-    const longitudes = earthquakeData.map(entry => parseFloat(entry.longitude));
+    const culmen_length_mm = penguineData.map(entry => parseFloat(entry.culmen_length_mm));
+    const culmen_depth_mm = penguineData.map(entry => parseFloat(entry.culmen_depth_mm));
 
     // グラフを描画するためのコンテキスト
-    const ctx = document.getElementById('earthquakeChart').getContext('2d');
+    const ctx = document.getElementById('penguineChart').getContext('2d');
 
     // チャートの作成
     const myChart = new Chart(ctx, {
         type: 'scatter', // チャートのタイプを散布図に設定
         data: {
             datasets: [{
-                label: 'Earthquake Locations',
-                data: earthquakeData.map(entry => ({ x: parseFloat(entry.longitude), y: parseFloat(entry.latitude) })),
+                label: 'culmen_length_depth',
+                data: penguineData.map(entry => ({ x: parseFloat(entry.culmen_length_mm), y: parseFloat(entry.culmen_depth_mm) })),
                 borderColor: 'rgba(75, 192, 192, 1)',
                 backgroundColor: 'rgba(75, 192, 192, 0.5)',
             }]
@@ -84,7 +74,7 @@ function drawChart(earthquakeData) {
                     position: 'bottom',
                     title: {
                         display: true,
-                        text: 'Longitude',
+                        text: 'culmen_length_mm',
                     }
                 },
                 y: {
@@ -92,7 +82,7 @@ function drawChart(earthquakeData) {
                     position: 'left',
                     title: {
                         display: true,
-                        text: 'Latitude',
+                        text: 'culmen_depth_mm',
                     }
                 }
             }
