@@ -13,7 +13,7 @@ fetch(csvFilePath)
     })
     .then(csvData => {
         const penguinData = parseCSV(csvData);
-        console.log(pnguinData)
+        console.log(penguinData)
         drawChart(penguinData);
     })
     .catch(error => console.error('Error:', error));
