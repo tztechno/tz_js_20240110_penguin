@@ -13,7 +13,7 @@ fetch(csvFilePath)
     })
     .then(csvData => {
         const penguinData = parseCSV(csvData);
-        console.log(penguinData)
+        console.log(penguinData);
         drawChart(penguinData);
     })
     .catch(error => console.error('Error:', error));
@@ -54,9 +54,6 @@ function parseCSV(csv) {
     return data;
 }
 
-
-
-console.log(penguinData)
 
 
 // グラフを描画する関数
