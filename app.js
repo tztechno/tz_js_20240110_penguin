@@ -48,7 +48,7 @@ function parseCSV(csv) {
     return data;
 }
 
-
+console.log(penguinData)
 
 // グラフを描画する関数
 function drawChart(penguinData) {
