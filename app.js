@@ -27,7 +27,9 @@ function parseCSV(csv) {
     for (let i = 1; i < lines.length; i++) {
         const values = lines[i].split(',');
         const entry = {};
+
         let validEntry = true; // Flag to check if the entry is valid
+
         for (let j = 0; j < headers.length; j++) {
             const key = headers[j].trim();
             let value = values[j].trim();
@@ -38,17 +40,23 @@ function parseCSV(csv) {
                 validEntry = false;
                 break;
             }
+
             entry[key] = value;
         }
+
         // If the entry is valid, add it to the data array
         if (validEntry) {
             data.push(entry);
         }
     }
+
     return data;
 }
 
+
+
 console.log(penguinData)
+
 
 // グラフを描画する関数
 function drawChart(penguinData) {
