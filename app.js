@@ -18,21 +18,32 @@ fetch(csvFilePath)
     .catch(error => console.error('Error:', error));
 
 
+
 function parseCSV(csv) {
     const lines = csv.split('\n');
     const headers = lines[0].split(',');
     const data = [];
+
     for (let i = 1; i < lines.length; i++) {
         const values = lines[i].split(',');
         const entry = {};
+        let validEntry = true; // Flag to check if the entry is valid
         for (let j = 0; j < headers.length; j++) {
             const key = headers[j].trim();
             let value = values[j].trim();
             value = parseFloat(value.replace(/[^\d.]/g, ''));
+
+            if (isNaN(value)) {
+                // If the value is NaN, mark the entry as invalid and break the loop
+                validEntry = false;
+                break;
             }
             entry[key] = value;
         }
-        data.push(entry);
+        // If the entry is valid, add it to the data array
+        if (validEntry) {
+            data.push(entry);
+        }
     }
     return data;
 }
