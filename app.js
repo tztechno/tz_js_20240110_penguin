@@ -29,7 +29,7 @@ function parseCSV(csv) {
         const entry = {};
         for (let j = 0; j < headers.length; j++) {
             const key = headers[j].trim();
-            let value = values[j].trim();
+            let value = values[j];
             entry[key] = value;
         }
         data.push(entry);
