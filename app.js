@@ -66,7 +66,7 @@ function drawChart(penguinData) {
         data: {
             datasets: [{
                 label: 'culmen_length_depth',
-                data: penguinData.map(entry => ({ x: parseFloat(entry.culmen_length_mm), y: parseFloat(entry.culmen_depth_mm) })),
+                data: penguinData.map(entry => ({ x: entry.culmen_length_mm, y: entry.culmen_depth_mm })),
                 borderColor: 'rgba(75, 192, 192, 1)',
                 backgroundColor: 'rgba(75, 192, 192, 0.5)',
             }]
